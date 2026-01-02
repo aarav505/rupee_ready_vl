@@ -9,12 +9,33 @@ const Navbar = () => {
   const containerRef = useRef(null);
 
   const navItems = [
-    { name: 'Home', href: '/' },
-    { name: 'About', href: '/' },
+    { name: 'Home', href: '#home' },
+    { name: 'About', href: '#about' },
     { name: 'Gallery', href: '/' },
     { name: 'Volunteer', href: '/' },
     { name: 'Contact', href: '/' },
   ];
+
+  const handleScroll = (e, index, href) => {
+  e.preventDefault();
+  setActiveIndex(index);
+  setIsOpen(false);
+
+  // This handles both "/#about" and "#about" to get just "about"
+  const targetId = href.split('#')[1]; 
+  const elem = document.getElementById(targetId);
+  
+  if (elem) {
+    const rect = elem.getBoundingClientRect();
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const targetY = rect.top + scrollTop - 80; // Navbar offset
+
+    window.scrollTo({
+      top: targetY,
+      behavior: 'smooth',
+    });
+  }
+};
 
   useEffect(() => {
     const updateBlobPosition = () => {
@@ -68,21 +89,16 @@ const Navbar = () => {
               
               {navItems.map((item, index) => (
                 <a
-                  key={item.name}
-                  ref={(el) => (navRefs.current[index] = el)}
-                  href={item.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setActiveIndex(index);
-                  }}
-                  className={`px-6 py-2 rounded-full text-sm font-medium transition-colors duration-300 relative z-10 ${
-                    index === activeIndex
-                      ? 'text-white'
-                      : 'text-black'
-                  }`}
-                >
-                  {item.name}
-                </a>
+          key={item.name}
+          ref={(el) => (navRefs.current[index] = el)}
+          href={item.href}
+          onClick={(e) => handleScroll(e, index, item.href)} // Used helper function
+          className={`px-6 py-2 rounded-full text-sm font-medium transition-colors duration-300 relative z-10 ${
+            index === activeIndex ? 'text-white' : 'text-black'
+          }`}
+        >
+          {item.name}
+        </a>
               ))}
             </div>
           </div>

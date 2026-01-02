@@ -5,6 +5,15 @@
   --foreground: #171717;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+section {
+  /* Offset for the sticky navbar height */
+  scroll-margin-top: 0rem; 
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

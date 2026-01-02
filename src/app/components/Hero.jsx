@@ -6,9 +6,9 @@ import { motion } from 'framer-motion';
 
 const Hero = () => {
   return (
-    <div className="min-h-[90vh] bg-zinc-50 font-sans ">
+    <div id="home" className="min-h-[90vh]  bg-zinc-50 font-sans ">
       {/* Hero Section */}
-      <section className="flex flex-col items-center justify-center pt-24 pb-12 px-6 text-center relative">
+      <section className="flex flex-col items-center justify-center pt-24 pb-4 px-6 text-center relative">
         
         {/* Animated Background Icons (Subtle) */}
         <motion.div 
