@@ -11,9 +11,10 @@ const Navbar = () => {
   const navItems = [
     { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
-    { name: 'Gallery', href: '/' },
-    { name: 'Volunteer', href: '/' },
-    { name: 'Contact', href: '/' },
+    { name: 'Partners', href: '#partners' },
+    { name: 'Gallery', href: '#gallery' },
+    { name: 'Volunteer', href: '#volunteer' },
+
   ];
 
   const handleScroll = (e, index, href) => {
