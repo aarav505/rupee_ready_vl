@@ -3,6 +3,7 @@
 import React from 'react';
 import { ArrowUpRight, BookOpen, Zap, Landmark } from 'lucide-react';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 const Hero = () => {
   return (
@@ -63,11 +64,12 @@ const Hero = () => {
 
         {/* Action Buttons with Framer Motion */}
         <div className="flex flex-col sm:flex-row gap-6 items-center justify-center">
-          
+          <Link href="/donate" passHref>
           {/* Primary CTA: See our programs */}
           <motion.button 
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
+            whileClick={'/donate'}
             className="group bg-black text-white pl-8 pr-2 py-2 rounded-full flex items-center gap-6 hover:shadow-xl transition-all"
           >
             <span className="font-medium flex items-center gap-2">
@@ -81,8 +83,10 @@ const Hero = () => {
               <ArrowUpRight size={20} />
             </motion.div>
           </motion.button>
+          </Link>
 
           {/* Secondary CTA: Learn More */}
+          <Link href="#about" passHref>
           <motion.button 
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
@@ -95,7 +99,9 @@ const Hero = () => {
             >
               <ArrowUpRight size={20} />
             </motion.div>
+
           </motion.button>
+          </Link>
         </div>
       </section>
     </div>
