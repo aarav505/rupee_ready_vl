@@ -77,9 +77,7 @@ const Volunteer = () => {
               </div>
 
               {/* Tooltip */}
-              <span className="absolute -top-12 left-1/2 -translate-x-1/2 bg-blue-950 text-white text-xs font-bold py-1 px-3 rounded opacity-0 group-hover:opacity-100 transition-opacity">
-                {copied ? 'COPIED!' : 'CLICK TO COPY'}
-              </span>
+              
             </button>
           </div>
 

@@ -28,7 +28,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-zinc-50 pt-16 font-sans relative">
+    <footer className="bg-zinc-50 pt-25 font-sans relative">
       {/* 1. Main Content Container (Constrained Width) */}
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
@@ -49,7 +49,7 @@ const Footer = () => {
               </div>
             </div>
             <p className="text-sm text-zinc-600 leading-relaxed">
-              Website Developed by Aarav Anand.
+              Website Developed by <span className='font-bold text-black'>Aarav Anand.</span>
             </p>
             <div>
               <h4 className="font-bold text-black text-sm mb-4">Follow us</h4>
@@ -60,7 +60,7 @@ const Footer = () => {
                 <a href="#" className="p-2 bg-black text-white rounded-full hover:bg-zinc-800 transition-colors">
                   <Twitter size={18} fill="currentColor" />
                 </a>
-                <a href="#" className="p-2 bg-black text-white rounded-full hover:bg-zinc-800 transition-colors">
+                <a href="https://www.instagram.com/rupeeready/" className="p-2 bg-black text-white rounded-full hover:bg-zinc-800 transition-colors">
                   <Instagram size={18} />
                 </a>
               </div>
@@ -92,8 +92,11 @@ const Footer = () => {
             <ul className="space-y-3 text-sm text-zinc-600">
               <li><a href="#home" className="hover:text-black transition-colors">Home</a></li>
               <li><a href="#about" className="hover:text-black transition-colors">About Us</a></li>
-              <li><a href="#gallery" className="hover:text-black transition-colors">Gallery</a></li>
+               <li><a href="#gallery" className="hover:text-black transition-colors">Gallery</a></li>
               <li><a href="#partners" className="hover:text-black transition-colors">Partners</a></li>
+              <li><a href="#volunteer" className="hover:text-black transition-colors">Volunteer</a></li>
+             
+              
             </ul>
           </div>
         </div>
