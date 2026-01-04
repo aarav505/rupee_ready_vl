@@ -1,31 +1,55 @@
-import React from 'react';
-import { Facebook, Instagram, Twitter } from 'lucide-react';
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import { Facebook, Instagram, Twitter, ChevronUp } from 'lucide-react';
 
 const Footer = () => {
+  const [showTopBtn, setShowTopBtn] = useState(false);
+
+  // Show button when page is scrolled down
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 400) {
+        setShowTopBtn(true);
+      } else {
+        setShowTopBtn(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const goToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   return (
-    <footer className="bg-zinc-30 pt-16 font-sans">
-      <div className="max-w-7xl bg-zinc-30 mx-auto px-6 lg:px-8">
+    <footer className="bg-zinc-50 pt-16 font-sans relative">
+      {/* 1. Main Content Container (Constrained Width) */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           
           {/* Logo & Partnership Column */}
           <div className="space-y-6">
             <div className="flex items-center gap-3">
               <div className="shrink-0">
-            <img 
-              src="/logo.jpeg" 
-              alt="GHAI Logo" 
-              className="h-16 w-auto rounded-full"
-              
-            />
-          </div>
+                <img 
+                  src="/logo.jpeg" 
+                  alt="GHAI Logo" 
+                  className="h-16 w-auto rounded-full"
+                />
+              </div>
               <div className="leading-tight font-bold text-xs uppercase tracking-tighter text-zinc-800">
                 Rupee Ready <br />
                 <span className="text-[10px] font-medium opacity-60">Finance | Money | Education</span>
               </div>
             </div>
             <p className="text-sm text-zinc-600 leading-relaxed">
-              We welcome all types of corporate partnership that can facilitate 
-              our humanitarian services to under served communities.
+              Website Developed by Aarav Anand.
             </p>
             <div>
               <h4 className="font-bold text-black text-sm mb-4">Follow us</h4>
@@ -43,10 +67,8 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Address Column */}
-          <div>
-            
-          </div>
+          {/* Spacer Column (Empty as per your request) */}
+          <div className="hidden lg:block"></div>
 
           {/* Contact Column */}
           <div>
@@ -54,13 +76,12 @@ const Footer = () => {
             <div className="space-y-6 text-sm text-zinc-600">
               <div>
                 <p className="font-bold text-black mb-1">Email:</p>
-                <a href="mailto:contactus@lagosfoodbank.org" className="block hover:text-[#76e094]">gg.org</a>
-                <a href="mailto:lagosfoodbank@gmail.com" className="block hover:text-[#76e094]">ss@gmail.com</a>
-                <a href="mailto:partnership@lagosfoodbank.org" className="block hover:text-[#76e094]">ss.org</a>
+                <a href="mailto:contact@rupeeready.org" className="block hover:text-[#76e094]">contact@rupeeready.org</a>
+                <a href="mailto:rupeeready@gmail.com" className="block hover:text-[#76e094]">rupeeready@gmail.com</a>
               </div>
               <div>
                 <p className="font-bold text-black mb-1">Phone:</p>
-                <p>07058617222</p>
+                <p>+91 XXXXX XXXXX</p>
               </div>
             </div>
           </div>
@@ -69,27 +90,36 @@ const Footer = () => {
           <div>
             <h4 className="font-bold text-sm mb-6 text-black uppercase tracking-wider">Explore</h4>
             <ul className="space-y-3 text-sm text-zinc-600">
-              <li><a href="#about" className="hover:text-black">About Us</a></li>
-              <li><a href="#donate" className="hover:text-black">Donate</a></li>
-              <li><a href="#gallery" className="hover:text-black">Gallery</a></li>
-              <li><a href="#volunteer" className="hover:text-black">Become a volunteer</a></li>
-              <li><a href="#contact" className="hover:text-black">Contact</a></li>
+              <li><a href="#home" className="hover:text-black transition-colors">Home</a></li>
+              <li><a href="#about" className="hover:text-black transition-colors">About Us</a></li>
+              <li><a href="#gallery" className="hover:text-black transition-colors">Gallery</a></li>
+              <li><a href="#partners" className="hover:text-black transition-colors">Partners</a></li>
             </ul>
           </div>
         </div>
-
-    
-
-      {/* Copyright Bar */}
-      <div className="bg-black py-6 w-[100%]text-center">
-        <p className="text-zinc-400 text-xs tracking-wide">
-          © Copyright 2026. Rupee Ready. All Rights Reserved.
-        </p>
       </div>
+
+      {/* 2. Full-Width Copyright Bar (Moved outside the max-w container) */}
+      <div className="w-full bg-black py-8 mt-12">
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <p className="text-zinc-400 text-xs tracking-[0.1em]">
+            © COPYRIGHT 2026. RUPEE READY. ALL RIGHTS RESERVED.
+          </p>
+        </div>
       </div>
+
+      {/* 3. Back to Top Button */}
+      {showTopBtn && (
+        <button
+          onClick={goToTop}
+          className="fixed bottom-20 right-8 z-50 p-3 bg-black text-white rounded-full shadow-2xl hover:bg-black transition-all duration-300 hover:-translate-y-2 animate-bounce-slow"
+          aria-label="Back to top"
+        >
+          <ChevronUp size={24} />
+        </button>
+      )}
     </footer>
-    
-    );
-}
+  );
+};
 
 export default Footer;
