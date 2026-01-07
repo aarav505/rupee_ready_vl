@@ -1,12 +1,11 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
-import { Menu, X, Gift, ArrowLeft } from 'lucide-react';
+import { Gift, ArrowLeft } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [blobStyle, setBlobStyle] = useState({ left: 0, width: 0 });
   const navRefs = useRef([]);
@@ -51,7 +50,6 @@ const Navbar = () => {
 
   const handleScroll = (e, index, href) => {
     setActiveIndex(index);
-    setIsOpen(false);
 
     if (pathname !== '/') return; 
 
@@ -124,7 +122,7 @@ const Navbar = () => {
             ) : null}
           </div>
 
-          {/* Donate/Back Button */}
+          {/* Donate/Back Button - Desktop */}
           <div className="hidden md:block">
             <Link
               href={isDonatePage ? "/" : "/donate"}
@@ -144,40 +142,15 @@ const Navbar = () => {
             </Link>
           </div>
 
-          {/* Mobile UI */}
-          <div className="md:hidden flex items-center space-x-4">
+          {/* Mobile UI - Only Donate Button */}
+          <div className="md:hidden flex items-center">
             <Link href={isDonatePage ? "/" : "/donate"} className="bg-black text-white px-6 py-2 rounded-full text-sm font-medium flex items-center gap-2">
               {isDonatePage && <ArrowLeft size={14} />}
               {isDonatePage ? "Back" : "Donate"}
             </Link>
-            {!isDonatePage && (
-              <button onClick={() => setIsOpen(!isOpen)} className="text-gray-700">
-                {isOpen ? <X size={24} /> : <Menu size={24} />}
-              </button>
-            )}
           </div>
         </div>
       </div>
-
-      {/* Mobile Menu */}
-      {isOpen && !isDonatePage && (
-        <div className="md:hidden bg-white border-t border-gray-200 shadow-xl">
-          <div className="px-2 pt-2 pb-3 space-y-1">
-            {navItems.map((item, index) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                onClick={(e) => handleScroll(e, index, item.href)}
-                className={`block px-4 py-3 rounded-lg text-base font-medium transition-colors ${
-                  index === activeIndex ? 'bg-blue-950 text-white' : 'text-gray-700'
-                }`}
-              >
-                {item.name}
-              </Link>
-            ))}
-          </div>
-        </div>
-      )}
     </nav>
   );
 };
